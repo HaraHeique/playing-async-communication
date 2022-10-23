@@ -1,5 +1,4 @@
-﻿using DotNetCore.CAP;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace PAC.Producao.Controllers
 {
