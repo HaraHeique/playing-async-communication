@@ -35,6 +35,8 @@ static void ConfigureServices(WebApplicationBuilder builder)
 
     builder.Services.AddTransient<FuncionariosConsumidor>();
 
+    builder.Services.AddTransient<FuncionarioEventosIntegracaoJob>();
+
     // Hangfire - Background job scheduler
     builder.Services.AddHangfire(
         configuration => configuration
@@ -79,10 +81,11 @@ static void ConfigurePipeline(WebApplication app)
 
     // Hangfire - Background job scheduler
     app.UseHangfireDashboard(); //app.MapHangfireDashboard();
-
-    RecurringJob.AddOrUpdate(
-        "FuncionarioEventosIntegracao",
-        () => new FuncionarioEventosIntegracaoJob(app.Services).Executar(),
+    
+    //app.UseHangfireServer(); -> Executar os jobs em background usando múltiplas threads
+    
+    RecurringJob.AddOrUpdate<FuncionarioEventosIntegracaoJob>(
+        job => job.Executar(),
         "0/15 * * ? * *" // A cada 15 segundos
     );
 }
