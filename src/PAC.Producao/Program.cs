@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using PAC.Producao.Configurations;
 using PAC.Producao.Consumidores;
 using PAC.Producao.Data;
+using PAC.Producao.Jobs;
 using PAC.Shared.Mensagens;
+using Quartz;
 using System.Collections.Concurrent;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,6 +43,18 @@ static void ConfigureServices(WebApplicationBuilder builder)
 
         options.UseDashboard();
     });
+
+    // Quartz.NET - Background job scheduler
+    builder.Services.AddQuartz(config =>
+    {
+        //config.UseMicrosoftDependencyInjectionScopedJobFactory(); -> Obsoleto
+        config.UseMicrosoftDependencyInjectionJobFactory();
+
+        config.AddJobConfig<OperarioEventosIntegracaoJob>(builder.Configuration);
+    });
+
+    // Integração do Quartz.NET com Hosted Services do .NET
+    builder.Services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 }
 
 static void ConfigurePipeline(WebApplication app)
