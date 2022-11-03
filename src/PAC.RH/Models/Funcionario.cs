@@ -24,5 +24,14 @@ namespace PAC.RH.Models
         {
             throw new NotImplementedException();
         }
+
+        // Método ad-hock setter
+        public void AtribuirNovoNome(NomeCompleto nome, Setor setorValido)
+        {
+            if (Setor != setorValido) 
+                throw new InvalidOperationException($"O setor {setorValido} é inválido para atualizar o nome");
+
+            NomeCompleto = nome;
+        }
     }
 }

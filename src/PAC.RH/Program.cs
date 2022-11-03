@@ -1,6 +1,7 @@
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.EntityFrameworkCore;
+using PAC.RH.Consumidores;
 using PAC.RH.Data;
 using PAC.RH.Jobs;
 using PAC.Shared.Mensagens;
@@ -31,6 +32,8 @@ static void ConfigureServices(WebApplicationBuilder builder)
     );
 
     builder.Services.AddSingleton<ConcurrentQueue<IntegracaoMensagem>>();
+
+    builder.Services.AddTransient<FuncionariosConsumidor>();
 
     // Hangfire - Background job scheduler
     builder.Services.AddHangfire(
