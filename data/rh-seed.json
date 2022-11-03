@@ -1,0 +1,103 @@
+[
+  {
+    "Id": "72CF1E02-97A2-4275-AAC8-11106F0520EE",
+    "nomeCompleto": {
+      "Nome": "Luan Mateus Teixeira",
+      "Apelido": "LuanOfBandy"
+    },
+    "documentosPessoais": {
+      "Cpf": "32519380969",
+      "Rg": "339637717"
+    },
+    "email": {
+      "pessoal": "luan-teixeira73@lojabichopapao.com.br",
+      "empresarial": "luan.pac@teste.com"
+    },
+    "endereco": {
+      "Numero": 606,
+      "Rua": "Rua Quinze de Novembro",
+      "Complemento": "Perto do bau bau bau",
+      "Cep": "97507761",
+      "Bairro": "Vila Júlia",
+      "Cidade": "Uruguaiana",
+      "Estado": "RS"
+    },
+    "SalarioBruto": 3000.0,
+    "Setor": 1
+  },
+  {
+    "Id": "13674821-3FEA-4CFB-86CB-2DE388786917",
+    "nomeCompleto": {
+      "Nome": "Diego Julio Aragão",
+      "Apelido": "Berserk Beast"
+    },
+    "documentosPessoais": {
+      "Cpf": "72762313139",
+      "Rg": "184935313"
+    },
+    "email": {
+      "pessoal": "diego_julio@teste.com",
+      "empresarial": "diego.pac@teste.com"
+    },
+    "endereco": {
+      "Numero": 147,
+      "Rua": "Avenida Primeiro de Maio",
+      "Cep": "68904814",
+      "Bairro": "Novo Buritizal",
+      "Cidade": "Macapá",
+      "Estado": "AP"
+    },
+    "SalarioBruto": 4250.0,
+    "Setor": 1
+  },
+  {
+    "Id": "D1F35D28-7D31-44D9-8307-3D2AD9E5E458",
+    "nomeCompleto": {
+      "Nome": "Eduarda Rosângela Almada",
+      "Apelido": "Duda"
+    },
+    "documentosPessoais": {
+      "Cpf": "19892867718",
+      "Rg": "395311044"
+    },
+    "email": {
+      "pessoal": "eduarda_rosangela@teste.com",
+      "empresarial": "eduarda.pac@teste.com"
+    },
+    "endereco": {
+      "Numero": 256,
+      "Rua": "Alameda dos Mógnos",
+      "Cep": "29907316",
+      "Bairro": "Três Barras",
+      "Cidade": "Linhares",
+      "Estado": "ES"
+    },
+    "SalarioBruto": 3540.89,
+    "Setor": 2
+  },
+  {
+    "Id": "0A3899E1-A48D-4EF8-BA01-DD7999DDC657",
+    "nomeCompleto": {
+      "Nome": "Aparecida Sara Rezende",
+      "Apelido": null
+    },
+    "documentosPessoais": {
+      "Cpf": "70064736598",
+      "Rg": "363077935"
+    },
+    "email": {
+      "pessoal": "aparecida_sara@teste.com",
+      "empresarial": "aparecida.pac@teste.com"
+    },
+    "endereco": {
+      "Numero": 747,
+      "Rua": "Avenida Tamandaré",
+      "Cep": "68904814",
+      "Bairro": "Jardim Itaipu",
+      "Cidade": "Ponta Porã",
+      "Estado": "MS"
+    },
+    "SalarioBruto": 5000.0,
+    "Setor": 2
+  }
+]
