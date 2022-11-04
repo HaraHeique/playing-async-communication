@@ -51,6 +51,12 @@ static void ConfigureServices(WebApplicationBuilder builder)
         config.UseMicrosoftDependencyInjectionJobFactory();
 
         config.AddJobConfig<OperarioEventosIntegracaoJob>(builder.Configuration);
+
+        /* 
+         * Para usar persistência basta seguir os seguinte links:
+         * https://www.quartz-scheduler.net/documentation/quartz-3.x/quick-start.html#creating-and-initializing-database
+         * https://github.com/quartznet/quartznet/tree/main/database/tables
+        */
     });
 
     // Integração do Quartz.NET com Hosted Services do .NET
