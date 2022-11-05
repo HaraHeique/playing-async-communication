@@ -4,6 +4,6 @@ namespace PAC.Shared.Mensagens
 {
     public record FuncionarioDesligadoMensagem(Guid Id, Setor Setor) : IntegracaoMensagem
     {
-        public override string Topico => "funcionario.desligado";
+        public override string Topico => "rh.funcionario.desligado";
     }
 }

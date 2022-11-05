@@ -5,7 +5,7 @@ namespace PAC.Shared.Mensagens
     public abstract record FuncionarioRegistradoMensagem(Guid Id, string Nome, Setor Setor)
         : IntegracaoMensagem
     {
-        public override string Topico => "funcionario.registrado";
+        public override string Topico => "rh.funcionario.registrado";
     }
 
     public record FuncionarioProducaoRegistradoMensagem(Guid Id, string Nome, string? Apelido)
