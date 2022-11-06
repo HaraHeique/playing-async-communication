@@ -18,7 +18,7 @@ namespace PAC.Producao.Consumidores
             _contexto = producaoContext;
         }
 
-        [CapSubscribe("funcionario.registrado")]
+        [CapSubscribe("rh.funcionario.registrado")]
         public async Task Consumir(FuncionarioProducaoRegistradoMensagem mensagem, CancellationToken cancellationToken)
         {
             if (SetorInvalido(mensagem.Setor)) return;
@@ -35,7 +35,7 @@ namespace PAC.Producao.Consumidores
             LogarMensagemProcessada(mensagem);
         }
         
-        [CapSubscribe("funcionario.atualizado")]
+        [CapSubscribe("rh.funcionario.atualizado")]
         public async Task Consumir(FuncionarioAtualizadoMensagem mensagem, CancellationToken cancellationToken)
         {
             if (SetorInvalido(mensagem.Setor)) return;
@@ -55,7 +55,7 @@ namespace PAC.Producao.Consumidores
             LogarMensagemProcessada(mensagem);
         }
         
-        [CapSubscribe("funcionario.desligado")]
+        [CapSubscribe("rh.funcionario.desligado")]
         public async Task Consumir(FuncionarioDesligadoMensagem mensagem, CancellationToken cancellationToken)
         {
             if (SetorInvalido(mensagem.Setor)) return;
