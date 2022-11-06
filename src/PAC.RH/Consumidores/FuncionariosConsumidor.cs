@@ -18,7 +18,7 @@ namespace PAC.RH.Consumidores
             _contexto = contexto;
         }
 
-        [CapSubscribe("operario.nome-alterado")]
+        [CapSubscribe("producao.operario.nome-alterado")]
         public async Task Consumir(OperarioNomeAlteradoMensagem mensagem, CancellationToken cancellationToken)
         {
             LogarMensagemConsumida(mensagem);
@@ -29,7 +29,28 @@ namespace PAC.RH.Consumidores
 
             if (!FuncionarioExistente(funcionario, mensagem.Id)) return;
 
-            funcionario!.AtribuirNovoNome(new NomeCompleto(mensagem.Nome, mensagem.Apelido), Setor.Producao);
+            // Como estou tratando como value object e eles são imutáveis então estou instanciando novamente
+            var novoNome = new NomeCompleto(mensagem.Nome, mensagem.Apelido);
+            funcionario!.AtribuirNovoNome(novoNome, Setor.Producao);
+
+            _contexto.Funcionarios.Update(funcionario);
+            await _contexto.SaveChangesAsync(cancellationToken);
+
+            LogarMensagemProcessada(mensagem);
+        }
+        
+        [CapSubscribe("vendas.vendedor.alteracao-info-pessoais")]
+        public async Task Consumir(VendedorInfoPessoaisAlteradaMensagem mensagem, CancellationToken cancellationToken)
+        {
+            LogarMensagemConsumida(mensagem);
+
+            // Realizar validações na mensagem se desejado
+
+            var funcionario = await _contexto.Funcionarios.FindAsync(mensagem.Id);
+
+            if (!FuncionarioExistente(funcionario, mensagem.Id)) return;
+
+            funcionario!.AtribuirNovasInfoPessoais(mensagem.Nome, mensagem.Email, Setor.Vendas);
 
             _contexto.Funcionarios.Update(funcionario);
             await _contexto.SaveChangesAsync(cancellationToken);

@@ -7,5 +7,11 @@
 
         public string Pessoal { get; set; }
         public string Empresarial { get; set; }
+
+        public Email(string pessoal, string empresarial)
+        {
+            Pessoal = pessoal;
+            Empresarial = empresarial;
+        }
     }
 }

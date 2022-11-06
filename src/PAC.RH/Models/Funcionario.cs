@@ -28,10 +28,25 @@ namespace PAC.RH.Models
         // Método ad-hock setter
         public void AtribuirNovoNome(NomeCompleto nome, Setor setorValido)
         {
-            if (Setor != setorValido) 
-                throw new InvalidOperationException($"O setor {setorValido} é inválido para atualizar o nome");
+            VerificarSetorValido(setorValido);
 
             NomeCompleto = nome;
+        }
+        
+        // Método ad-hock setter
+        public void AtribuirNovasInfoPessoais(string nome, string emailEmpresarial, Setor setorValido)
+        {
+            VerificarSetorValido(setorValido);
+
+            // Como estou tratando ambos como value object e eles são imutáveis então estou instanciando novamente porque são imutáveis
+            NomeCompleto = new NomeCompleto(nome, NomeCompleto.Apelido);
+            Email = new Email(Email.Pessoal, emailEmpresarial);
+        }
+
+        private void VerificarSetorValido(Setor setorValido)
+        {
+            if (Setor != setorValido)
+                throw new InvalidOperationException($"O setor {setorValido} é inválido para atualizar o nome");
         }
     }
 }
