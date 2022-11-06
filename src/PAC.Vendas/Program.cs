@@ -1,5 +1,11 @@
+using FluentScheduler;
 using Microsoft.EntityFrameworkCore;
+using PAC.Shared.Mensagens;
+using PAC.Vendas.Consumidores;
 using PAC.Vendas.Data;
+using PAC.Vendas.Jobs;
+using System.Collections.Concurrent;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +30,11 @@ static void ConfigureServices(WebApplicationBuilder builder)
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("Database"))
     );
 
-    //builder.Services.AddSingleton<ConcurrentQueue<FuncionarioRegistradoMensagem>>();
+    builder.Services.AddSingleton<ConcurrentQueue<IntegracaoMensagem>>();
+
+    builder.Services.AddTransient<VendedoresConsumidor>();
+
+    builder.Services.AddTransient<VendedorEventosIntegracaoJob>();
 
     // CAP - Event bus
     builder.Services.AddCap(options =>
@@ -48,6 +58,9 @@ static void ConfigurePipeline(WebApplication app)
     app.UseHttpsRedirection();
     app.UseAuthorization();
     app.MapControllers();
+
+    // FluentScheduler - Background job scheduler
+    JobManager.Initialize(new ScheduleJobRegistry(app.Services));
 }
 
 #endregion
