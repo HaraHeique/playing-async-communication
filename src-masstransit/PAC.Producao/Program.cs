@@ -1,3 +1,4 @@
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using PAC.Producao.Configurations;
 using PAC.Producao.Consumidores;
@@ -34,15 +35,27 @@ static void ConfigureServices(WebApplicationBuilder builder)
 
     builder.Services.AddTransient<OperariosConsumidor>();
 
-    // CAP - Event bus
-    builder.Services.AddCap(options =>
+    // MassTransit - Event bus
+    builder.Services.AddMassTransit(options =>
     {
-        options.UseEntityFramework<ProducaoContext>(options => options.Schema = "ProducaoCap");
+        options.AddConsumer<FuncionarioAtualizadoConsumidor>(typeof(FuncionarioAtualizadoMensagem));
+        options.AddConsumer<FuncionarioDesligadoConsumidor>(typeof(FuncionarioDesligadoMensagem));
+        options.AddConsumer<FuncionarioProducaoRegistradoConsumidor>(typeof(FuncionarioProducaoRegistradoMensagem));
 
-        options.UseRabbitMQ("localhost");
-
-        options.UseDashboard();
+        options.UsingRabbitMq();
     });
+
+    builder.Services.AddOptions<MassTransitHostOptions>()
+        .Configure(options =>
+        {
+            options.WaitUntilStarted = true;
+
+            // if specified, limits the wait time when starting the bus
+            options.StartTimeout = TimeSpan.FromSeconds(10);
+
+            // if specified, limits the wait time when stopping the bus
+            options.StopTimeout = TimeSpan.FromSeconds(30);
+        });
 
     // Quartz.NET - Background job scheduler
     builder.Services.AddQuartz(config =>

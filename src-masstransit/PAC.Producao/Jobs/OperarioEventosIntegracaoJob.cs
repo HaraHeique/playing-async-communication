@@ -1,4 +1,4 @@
-﻿using DotNetCore.CAP;
+﻿using MassTransit;
 using Newtonsoft.Json;
 using PAC.Shared.Mensagens;
 using Quartz;
@@ -11,12 +11,12 @@ namespace PAC.Producao.Jobs
     {
         private readonly ILogger<OperarioEventosIntegracaoJob> _logger;
         private readonly ConcurrentQueue<IntegracaoMensagem> _filaProcessos;
-        private readonly ICapPublisher _produtor;
+        private readonly IPublishEndpoint _produtor;
 
         public OperarioEventosIntegracaoJob(
             ILogger<OperarioEventosIntegracaoJob> logger,
             ConcurrentQueue<IntegracaoMensagem> filaProcessos,
-            ICapPublisher produtor)
+            IPublishEndpoint produtor)
         {
             _logger = logger;
             _filaProcessos = filaProcessos;
@@ -43,7 +43,7 @@ namespace PAC.Producao.Jobs
             LogarInformacoesMensagemConsumida(mensagem);
 
             // CAP usa Outbox pattern, ou seja, garante sempre o envio da mensagem para o broker e usa políticas de retry caso ocorram falhas (olhar na docs)
-            await _produtor.PublishAsync(mensagem.Topico, mensagem);
+            await _produtor.Publish(mensagem);
 
             RemoverProximaMensagem();
         }
