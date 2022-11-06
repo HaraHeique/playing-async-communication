@@ -1,5 +1,6 @@
 using Hangfire;
 using Hangfire.SqlServer;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using PAC.RH.Consumidores;
 using PAC.RH.Data;
@@ -56,15 +57,26 @@ static void ConfigureServices(WebApplicationBuilder builder)
 
     builder.Services.AddHangfireServer();
 
-    // CAP - Event bus
-    builder.Services.AddCap(options =>
+    // MassTransit - Event bus
+    builder.Services.AddMassTransit(options =>
     {
-        options.UseEntityFramework<RhContext>(options => options.Schema = "RhCap");
+        options.AddConsumer<OperarioNomeAlteradoConsumidor>(typeof(OperarioNomeAlteradoMensagem));
+        options.AddConsumer<VendedorInfoPessoaisAlteradaConsumidor>(typeof(VendedorInfoPessoaisAlteradaMensagem));
 
-        options.UseRabbitMQ("localhost");
-
-        options.UseDashboard();
+        options.UsingRabbitMq();
     });
+
+    builder.Services.AddOptions<MassTransitHostOptions>()
+        .Configure(options =>
+        {
+            options.WaitUntilStarted = true;
+
+            // if specified, limits the wait time when starting the bus
+            options.StartTimeout = TimeSpan.FromSeconds(10);
+
+            // if specified, limits the wait time when stopping the bus
+            options.StopTimeout = TimeSpan.FromSeconds(30);
+        });
 }
 
 static void ConfigurePipeline(WebApplication app)

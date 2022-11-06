@@ -1,5 +1,5 @@
-﻿using DotNetCore.CAP;
-using Hangfire;
+﻿using Hangfire;
+using MassTransit;
 using Newtonsoft.Json;
 using PAC.Shared.Mensagens;
 using System.Collections.Concurrent;
@@ -11,12 +11,12 @@ namespace PAC.RH.Jobs
     {
         private readonly ILogger<FuncionarioEventosIntegracaoJob> _logger;
         private readonly ConcurrentQueue<IntegracaoMensagem> _filaProcessos;
-        private readonly ICapPublisher _produtor;
+        private readonly IPublishEndpoint _produtor;
 
         public FuncionarioEventosIntegracaoJob(
             ILogger<FuncionarioEventosIntegracaoJob> logger,
-            ConcurrentQueue<IntegracaoMensagem> filaProcessos, 
-            ICapPublisher produtor)
+            ConcurrentQueue<IntegracaoMensagem> filaProcessos,
+            IPublishEndpoint produtor)
         {
             _logger = logger;
             _filaProcessos = filaProcessos;
@@ -44,7 +44,7 @@ namespace PAC.RH.Jobs
             _logger.LogInformation("Mensagem - {@tipo}: {@mensagem}", mensagem.GetType().Name, JsonConvert.SerializeObject(mensagem));
 
             // CAP usa Outbox pattern, ou seja, garante sempre o envio da mensagem para o broker e usa políticas de retry caso ocorram falhas (olhar na docs)
-            await _produtor.PublishAsync(mensagem.Topico, mensagem);
+            await _produtor.Publish(mensagem);
 
             RemoverProximaMensagem(_filaProcessos);
         }
