@@ -12,7 +12,7 @@ namespace PAC.Vendas.Jobs
                 .ToRunEvery(15).Seconds();
         }
 
-        private static VendedorEventosIntegracaoJob ObterInstanciaVendedorEventosIntegracaoJob(IServiceProvider provider) =>
-            provider.CreateScope().ServiceProvider.GetRequiredService<VendedorEventosIntegracaoJob>();
+        private static VendedorEventosIntegracaoJob ObterInstanciaVendedorEventosIntegracaoJob(IServiceProvider provider) 
+            => provider.CreateScope().ServiceProvider.GetRequiredService<VendedorEventosIntegracaoJob>();
     }
 }
