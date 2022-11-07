@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "20d1bd5c-90c5-4cc0-b57c-2b69019ef529",
+		"name": "pac",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "rh",
+			"item": [
+				{
+					"name": "/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": \"13674821-3FEA-4CFB-86CB-2DE388786917\",\r\n    \"nomeCompleto\": {\r\n      \"Nome\": \"Diego Julio Aragão\",\r\n      \"Apelido\": \"Berserk Beast\"\r\n    },\r\n    \"documentosPessoais\": {\r\n      \"Cpf\": \"72762313139\",\r\n      \"Rg\": \"184935313\"\r\n    },\r\n    \"email\": {\r\n      \"pessoal\": \"diego_julio@teste.com\",\r\n      \"empresarial\": \"diego.pac@teste.com\"\r\n    },\r\n    \"endereco\": {\r\n      \"Numero\": 147,\r\n      \"Rua\": \"Avenida Primeiro de Maio\",\r\n      \"Cep\": \"68904814\",\r\n      \"Bairro\": \"Novo Buritizal\",\r\n      \"Cidade\": \"Macapá\",\r\n      \"Estado\": \"AP\"\r\n    },\r\n    \"SalarioBruto\": 4250.0,\r\n    \"Setor\": 1\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7027/Funcionarios",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7027",
+							"path": [
+								"Funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"d1f35d28-7d31-44d9-8307-3d2ad9e5e458\",\r\n        \"nomeCompleto\": {\r\n            \"nome\": \"Luana Mateusa Teixeira da Silva\",\r\n            \"apelido\": \"Duda\"\r\n        },\r\n        \"documentosPessoais\": {\r\n            \"cpf\": \"19892867718\",\r\n            \"rg\": \"395311044\"\r\n        },\r\n        \"email\": {\r\n            \"pessoal\": \"eduarda_rosangela@teste.com\",\r\n            \"empresarial\": \"luana_pac@teste.com\"\r\n        },\r\n        \"endereco\": {\r\n            \"numero\": 256,\r\n            \"rua\": \"Alameda dos Mógnos\",\r\n            \"complemento\": null,\r\n            \"cep\": \"29907316\",\r\n            \"bairro\": \"Três Barras\",\r\n            \"cidade\": \"Linhares\",\r\n            \"estado\": \"ES\"\r\n        },\r\n        \"salarioBruto\": 3540.89,\r\n        \"setor\": 2,\r\n        \"desligado\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7027/Funcionarios",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7027",
+							"path": [
+								"Funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7027/Funcionarios",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7027",
+							"path": [
+								"Funcionarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7027/Funcionarios/13674821-3FEA-4CFB-86CB-2DE388786917",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7027",
+							"path": [
+								"Funcionarios",
+								"13674821-3FEA-4CFB-86CB-2DE388786917"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/desligar/{id}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7027/Funcionarios/desligar/13674821-3FEA-4CFB-86CB-2DE388786917",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7027",
+							"path": [
+								"Funcionarios",
+								"desligar",
+								"13674821-3FEA-4CFB-86CB-2DE388786917"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "producao",
+			"item": [
+				{
+					"name": "/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7104/Operarios",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7104",
+							"path": [
+								"Operarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7104/Operarios/13674821-3fea-4cfb-86cb-2de388786917",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7104",
+							"path": [
+								"Operarios",
+								"13674821-3fea-4cfb-86cb-2de388786917"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/definir-cargo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"13674821-3FEA-4CFB-86CB-2DE388786917\",\r\n  \"funcao\": 2,\r\n  \"periodo\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7104/Operarios/definir-cargo",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7104",
+							"path": [
+								"Operarios",
+								"definir-cargo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/alterar-nome",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"13674821-3FEA-4CFB-86CB-2DE388786917\",\r\n  \"nome\": \"Diego Julio Aragão\",\r\n  \"apelido\": \"Diegon da massa\",\r\n  \"motivo\": \"Porque eu quero e mando agora\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7104/Operarios/alterar-nome",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7104",
+							"path": [
+								"Operarios",
+								"alterar-nome"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vendas",
+			"item": [
+				{
+					"name": "/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7056/Vendedores",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7056",
+							"path": [
+								"Vendedores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7056/Vendedores/d1f35d28-7d31-44d9-8307-3d2ad9e5e458",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7056",
+							"path": [
+								"Vendedores",
+								"d1f35d28-7d31-44d9-8307-3d2ad9e5e458"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/alterar-info-pessoais",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"D1F35D28-7D31-44D9-8307-3D2AD9E5E458\",\r\n  \"nome\": \"Luana Mateusa Teixeira\",\r\n  \"email\": \"luana_pac@verdades.com\",\r\n  \"motivo\": \"Porque simmmm!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7056/Vendedores/alterar-info-pessoais",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7056",
+							"path": [
+								"Vendedores",
+								"alterar-info-pessoais"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/definir-cargo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"D1F35D28-7D31-44D9-8307-3D2AD9E5E458\",\r\n    \"funcao\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7056/Vendedores/definir-funcao",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7056",
+							"path": [
+								"Vendedores",
+								"definir-funcao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
