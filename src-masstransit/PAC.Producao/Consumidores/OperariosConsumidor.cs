@@ -6,7 +6,7 @@ using PAC.Shared.Mensagens;
 
 namespace PAC.Producao.Consumidores
 {
-    public abstract class OperariosConsumidor
+    public class OperariosConsumidor
     {
         protected readonly ILogger<OperariosConsumidor> _logger;
         protected readonly ProducaoContext _contexto;

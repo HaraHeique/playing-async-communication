@@ -58,12 +58,18 @@ static void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddHangfireServer();
 
     // MassTransit - Event bus
-    builder.Services.AddMassTransit(options =>
+    builder.Services.AddMassTransit(config =>
     {
-        options.AddConsumer<OperarioNomeAlteradoConsumidor>(typeof(OperarioNomeAlteradoMensagem));
-        options.AddConsumer<VendedorInfoPessoaisAlteradaConsumidor>(typeof(VendedorInfoPessoaisAlteradaMensagem));
+        config.AddConsumer<OperarioNomeAlteradoConsumidor>();
+        config.AddConsumer<VendedorInfoPessoaisAlteradaConsumidor>();
 
-        options.UsingRabbitMq();
+        config.UsingRabbitMq((context, cfg) =>
+        {
+            var eventBusSection = builder.Configuration.GetSection("EventBus:Topics");
+
+            cfg.ReceiveEndpoint(eventBusSection["OperarioNomeAlterado"], e => e.ConfigureConsumer<OperarioNomeAlteradoConsumidor>(context));
+            cfg.ReceiveEndpoint(eventBusSection["VendedorInfoPessoaisAlterado"], e => e.ConfigureConsumer<VendedorInfoPessoaisAlteradaConsumidor>(context));
+        });
     });
 
     builder.Services.AddOptions<MassTransitHostOptions>()

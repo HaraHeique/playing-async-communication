@@ -5,7 +5,7 @@ using PAC.Shared.Mensagens;
 
 namespace PAC.RH.Consumidores
 {
-    public abstract class FuncionariosConsumidor
+    public class FuncionariosConsumidor
     {
         protected readonly ILogger<FuncionariosConsumidor> _logger;
         protected readonly RhContext _contexto;

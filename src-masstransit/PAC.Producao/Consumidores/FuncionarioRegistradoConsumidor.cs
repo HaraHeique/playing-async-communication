@@ -5,10 +5,10 @@ using PAC.Shared.Mensagens;
 
 namespace PAC.Producao.Consumidores
 {
-    public class FuncionarioProducaoRegistradoConsumidor : OperariosConsumidor, IConsumer<FuncionarioProducaoRegistradoMensagem>
+    public class FuncionarioRegistradoConsumidor : OperariosConsumidor, IConsumer<FuncionarioProducaoRegistradoMensagem>
     {
-        public FuncionarioProducaoRegistradoConsumidor(
-            ILogger<FuncionarioProducaoRegistradoConsumidor> logger,
+        public FuncionarioRegistradoConsumidor(
+            ILogger<FuncionarioRegistradoConsumidor> logger,
             ProducaoContext producaoContext) : base(logger, producaoContext) { }
 
         public async Task Consume(ConsumeContext<FuncionarioProducaoRegistradoMensagem> context)

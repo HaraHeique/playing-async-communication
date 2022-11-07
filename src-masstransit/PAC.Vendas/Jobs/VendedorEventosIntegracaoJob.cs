@@ -41,7 +41,7 @@ namespace PAC.Vendas.Jobs
 
             LogarInformacoesMensagemConsumida(mensagem);
 
-            await _produtor.Publish(mensagem);
+            await _produtor.Publish(mensagem, mensagem.GetType());
 
             RemoverProximaMensagem();
         }

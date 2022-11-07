@@ -36,13 +36,20 @@ static void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddTransient<OperariosConsumidor>();
 
     // MassTransit - Event bus
-    builder.Services.AddMassTransit(options =>
+    builder.Services.AddMassTransit(config =>
     {
-        options.AddConsumer<FuncionarioAtualizadoConsumidor>(typeof(FuncionarioAtualizadoMensagem));
-        options.AddConsumer<FuncionarioDesligadoConsumidor>(typeof(FuncionarioDesligadoMensagem));
-        options.AddConsumer<FuncionarioProducaoRegistradoConsumidor>(typeof(FuncionarioProducaoRegistradoMensagem));
+        config.AddConsumer<FuncionarioAtualizadoConsumidor>();
+        config.AddConsumer<FuncionarioDesligadoConsumidor>();
+        config.AddConsumer<FuncionarioRegistradoConsumidor>();
 
-        options.UsingRabbitMq();
+        config.UsingRabbitMq((context, cfg) =>
+        {
+            var eventBusSection = builder.Configuration.GetSection("EventBus:Topics");
+
+            cfg.ReceiveEndpoint(eventBusSection["FuncionarioAtualizado"], e => e.ConfigureConsumer<FuncionarioAtualizadoConsumidor>(context));
+            cfg.ReceiveEndpoint(eventBusSection["FuncionarioRegistrado"], e => e.ConfigureConsumer<FuncionarioRegistradoConsumidor>(context));
+            cfg.ReceiveEndpoint(eventBusSection.GetValue<string>("FuncionarioDesligado"), e => e.ConfigureConsumer<FuncionarioDesligadoConsumidor>(context));
+        });
     });
 
     builder.Services.AddOptions<MassTransitHostOptions>()

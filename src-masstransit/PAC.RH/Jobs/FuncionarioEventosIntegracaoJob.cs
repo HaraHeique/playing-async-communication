@@ -43,8 +43,7 @@ namespace PAC.RH.Jobs
 
             _logger.LogInformation("Mensagem - {@tipo}: {@mensagem}", mensagem.GetType().Name, JsonConvert.SerializeObject(mensagem));
 
-            // CAP usa Outbox pattern, ou seja, garante sempre o envio da mensagem para o broker e usa políticas de retry caso ocorram falhas (olhar na docs)
-            await _produtor.Publish(mensagem);
+            await _produtor.Publish(mensagem, mensagem.GetType());
 
             RemoverProximaMensagem(_filaProcessos);
         }

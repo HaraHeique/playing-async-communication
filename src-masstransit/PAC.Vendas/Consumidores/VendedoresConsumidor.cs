@@ -6,7 +6,7 @@ using PAC.Vendas.Models.Domain;
 
 namespace PAC.Vendas.Consumidores
 {
-    public abstract class VendedoresConsumidor
+    public class VendedoresConsumidor
     {
         protected readonly ILogger<VendedoresConsumidor> _logger;
         protected readonly VendasContext _contexto;
