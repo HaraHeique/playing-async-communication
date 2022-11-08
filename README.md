@@ -20,11 +20,15 @@ Em vista disso, uma instancia de Funcionario, Operario e Vendedor podem conter a
 
 Foi adotado dois modelos de implementação para esta simples aplicação. Uma delas o código fonte está presente em */src-cap*, que utiliza como principais ferramentas [CAP](https://github.com/dotnetcore/CAP), que abstrai e facilita a utilização do message broker *RabbitMQ*, e os agendadores de tarefas de segundo plano para cada módulo: [Hangfire](https://github.com/HangfireIO/Hangfire), [Quartz.Net](https://github.com/quartznet/quartznet) e [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler).
 
-![Esquema de comunicação entre as API's com CAP](./docs/esquema-comunicao-pac-CAP.png)
+<center>
+	<img src="./docs/esquema-comunicao-pac-CAP.png" alt="Esquema de comunicação entre as API's com CAP" />
+</center>
 
 Já o outro modelo está presente em */src-masstransit* é bem similar ao de cima, com diferença que para uso do *Event Bus* (message broker) com o *RabbitMQ* é usado a ferramenta [MassTransit](https://github.com/MassTransit/MassTransit).
 
-![Esquema de comunicação entre as API's com MassTransit](./docs/esquema-comunicao-pac-MassTransit.png)
+<center>
+	<img src="./docs/esquema-comunicao-pac-MassTransit.png" alt="Esquema de comunicação entre as API's com MassTransit" />
+</center>
 
 
 ## Como executar?
