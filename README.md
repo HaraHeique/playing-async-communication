@@ -48,6 +48,9 @@ Antes de tudo certifique-se de instalar o .Net 6, SQL Server, com SSMS preferenc
     ![Startar a aplicação com N projetos](./docs/startar-aplicacao-pac.png)
 
 
+**OBS.:** Caso deseje utilizar corpo de dados já pré-montadas para enviar as requests para os endpoints da API de RH basta utilizar o arquivo *./data/rh-seed.json*.
+
+
 ## Referências
 
 - [Comunicação em uma arquitetura de microsserviço](https://learn.microsoft.com/pt-br/dotnet/architecture/microservices/architect-microservice-container-applications/communication-in-microservice-architecture);
