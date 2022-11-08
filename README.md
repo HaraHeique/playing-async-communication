@@ -60,6 +60,7 @@ Antes de tudo certifique-se de instalar o .Net 6, SQL Server, com SSMS preferenc
 - [Comunicação em uma arquitetura de microsserviço](https://learn.microsoft.com/pt-br/dotnet/architecture/microservices/architect-microservice-container-applications/communication-in-microservice-architecture);
 - [Identificar os limites de modelo de domínio de cada microsserviço](https://learn.microsoft.com/pt-br/dotnet/architecture/microservices/architect-microservice-container-applications/identify-microservice-domain-model-boundaries);
 - [CAP](https://github.com/dotnetcore/CAP);
+- [MassTransit](https://github.com/MassTransit/MassTransit);
 - [Hangfire](https://github.com/HangfireIO/Hangfire);
 - [Quartz.Net](https://github.com/quartznet/quartznet);
 - [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler).
